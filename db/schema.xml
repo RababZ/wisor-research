@@ -81,6 +81,9 @@
 <row name="hours_available_per_week" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="fee_per_hour" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -197,6 +200,9 @@
 <row name="end_date" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
+<row name="project_fee" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
 <row name="client_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
@@ -215,6 +221,14 @@
 <row name="approved" null="1" autoincrement="0">
 <datatype>BOOLEAN</datatype>
 <default>NULL</default></row>
+<row name="client_review_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="reviews" row="id" />
+</row>
+<row name="kp_review_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="reviews" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -290,6 +304,20 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="languages" row="id" />
 </row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="404" y="789.5" name="reviews">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="rating" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="content" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
