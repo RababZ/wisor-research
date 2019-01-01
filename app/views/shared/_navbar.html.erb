@@ -1,24 +1,53 @@
-<div class="navbar bg-white py-3 px-4">
-  <i class="fas fa-smile"></i>
+<div class="navbar bg py-3 px-4">
+  <!-- Logo -->
+  <!-- <i class="fas fa-smile"></i> -->
+  <%= link_to root_path, class: "navbar-wisor-brand" do %>
+    <%= image_tag "wisor-bluelogo.png", height: 50 %>
+  <% end %>
+  <!-- Right Navigation -->
   <div class="nav-bar-right d-flex align-items-center">
-    <%= link_to "About us", "#", class: "px-3 d-none d-sm-block" %>
-    <%= link_to "Our services", "#", class: "px-3 d-none d-sm-block" %>
-    <%= link_to "Contact us", "#", class: "px-3 d-none d-sm-block" %>
+
+    <% if user_signed_in? %>
+      <!-- Links when logged in -->
+      <%= link_to "Knowledge professionals", "#", class: "px-3 d-none d-sm-block navbar-wisor-link" %>
+      <%= link_to "Projects", "#", class: "px-3 d-none d-sm-block navbar-wisor-link" %>
+      <%= link_to "Messages", "#", class: "px-3 d-none d-sm-block navbar-wisor-link" %>
     <div class="dropdown  d-none d-sm-block">
       <%= image_tag "http://www.placehold.it/40x40", class: "rounded-circle px-3", alt:"avatar", type: "image", id: "dropdownMenuButton", data: { toggle:"dropdown" }, aria: { haspopup:"true", expanded: "false" } %>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <%= link_to "Action", "#", class: "dropdown-item" %>
-        <%= link_to "Another action", "#", class: "dropdown-item" %>
-        <%= link_to "Something else here", "#", class: "dropdown-item" %>
+        <%= link_to "Profile", "#", class: "dropdown-item" %>
+        <%=  link_to('Log out', destroy_user_session_path,  method: 'delete', class: "dropdown-item")%>
       </div>
     </div>
+    <% else %>
+      <!-- Links when logged out -->
+      <%= link_to t(".sign_in", default: "Log in"), new_user_session_path, class: "px-3 d-none d-sm-block navbar-wisor-link" %>
+      <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "px-3 d-none d-sm-block navbar-wisor-link" %>
+    <% end %>
   </div>
+
   <div class="dropdown burger d-block d-sm-none">
     <i class="fas fa-bars" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+    <!-- Dropdown list appearing on mobile only -->
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-     <%= link_to "Action", "#", class: "dropdown-item" %>
-     <%= link_to "Another action", "#", class: "dropdown-item" %>
-     <%= link_to "Something else here", "#", class: "dropdown-item" %>
+      <% if user_signed_in? %>
+        <!-- Links when logged in -->
+        <%= link_to "Profile", "#", class: "dropdown-item" %>
+        <%= link_to "Knowledge professionals", "#", class: "dropdown-item" %>
+        <%= link_to "Projects", "#", class: "dropdown-item" %>
+        <%= link_to "Messages", "#", class: "dropdown-item" %>
+        <%= link_to('Log out', destroy_user_session_path, method: 'delete', class: "dropdown-item") %>
+      <% else %>
+        <!-- Links when logged out -->
+        <%= link_to t(".sign_in", default: "Log in"), new_user_session_path, class: "dropdown-item" %>
+        <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "dropdown-item" %>
+      <% end %>
    </div>
  </div>
+
 </div>
+
+
+
+
+
